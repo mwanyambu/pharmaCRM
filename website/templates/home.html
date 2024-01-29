@@ -7,8 +7,7 @@
   {% else %}
 <h1>Log in</h1>
 <form method="post" action="{% url 'home' %}">
-  {% csrf_token %}
-  <form>
+    {% csrf_token %}
     <div class="mb-3">
       <!-- <label for="exampleInputEmail1" class="form-label">Email address</label> -->
       <input type="text" class="form-control" name="username", placeholder="username" required> <!-- id="exampleInputEmail1" aria-describedby="emailHelp"> -->
@@ -25,7 +24,6 @@
     </div>
   -->
     <button type="submit" class="btn btn-secondary">Login</button>
-  </form>
   </form>
 </div>
 {% endif %}
