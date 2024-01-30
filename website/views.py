@@ -7,19 +7,25 @@ from . forms import SignUpForm
 def home(request):
     # check if logged in
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST['username', '']
+        password = request.POST['password', '']
         # authenticate user
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            # login user
-            login(request, user)
-            messages.success(request, 'You have been logged in!')
-            return redirect('home')
-        else:
-            messages.success(request, 'Error logging in - please try again')
-            return redirect('home')
+        if username and password:
+            try:
+                user = authenticate(request, username=username, password=password)
+                if user is not None:
+                    # login user
+                    login(request, user)
+                    messages.success(request, 'You have been logged in!')
+                    return redirect('home')
+                else:
+                    messages.success(request, 'Error logging in - please try again')
+                    return redirect('home')
+            except:
+                messages.success(request, 'Error logging in - please try again')
+                return redirect('home')
     else:
+        messages.error(request, 'Error logging in - please try again')
         return render(request, 'home.html', {})
 
 def logout_user(request):
@@ -40,7 +46,10 @@ def register_user(request):
             login(request, user)
             messages.success(request, ('You have been registered'))
             return redirect('home')
+        else:
+            messages.error(request, 'Error registering - please try again')
+            return redirect('register')
     else:
         form = SignUpForm()
-        return render(request, 'register.html', {'form':form})
+        #return render(request, 'register.html', {'form':form})
     return render(request, 'register.html', {'form':form})
