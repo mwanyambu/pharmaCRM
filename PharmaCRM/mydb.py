@@ -1,6 +1,6 @@
 import mysql.connector
 
-database = msqyl.connector.connect(
+database = mysql.connector.connect(
   host="localhost",
   user="root",
   passwd="R00tPassword",
