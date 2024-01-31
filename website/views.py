@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib import messages 
 from .forms import SignUpForm
+from .models import DoctorList
 
 # Create your views here.
 def home(request):
+    master_list = DoctorList.objects.all()
     # check if logged in
     if request.method == 'POST':
         username = request.POST.get('username', '')
@@ -27,7 +29,7 @@ def home(request):
         return register_user(request)
     else:
         #messages.error(request, 'Error logging in - please try again')
-        return render(request, 'home.html', {})
+        return render(request, 'home.html', {'master_list':master_list})
 
 
 def logout_user(request):
@@ -55,3 +57,11 @@ def register_user(request):
         form = SignUpForm()
         #return render(request, 'register.html', {'form':form})
     return render(request, 'register.html', {'form':form})
+
+def doctor_list(request, pk):
+    if request.user.is_authenticated:
+        master_list = DoctorList.objects.get(id=pk)
+        return render(request, 'doctor_list.html', {'master_list':master_list})
+    else:
+        messages.sucess(request, 'you must log in - please try again')
+        return redirect('home')

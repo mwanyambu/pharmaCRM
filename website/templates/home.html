@@ -1,9 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="col-md-6 offset-md-3">
 
   {% if user.is_authenticated %}
-  <h1>Welcome</h1>
+  <table class="table table-hover table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">City</th>
+        <th scope="col">State</th>
+        <th scope="col">Zip</th>
+        <th scope="col">ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if master_list %}
+        {% for item in master_list %}
+          <tr>
+            <td>{{ item.first_name }} {{ item.last_name }}</td>
+            <td>{{ item.email }}</td> 
+            <td>{{ item.phone }}</td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.city }}</td>
+            <td>{{ item.state }}</td>
+            <td>{{ item.zip }}</td>
+            <td>{{ item.notes }}</td>
+            <td>{{ item.id }}</td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+  <h1>master list</h1>
+ 
   {% else %}
 <h1>Log in</h1>
 <form method="post" action="{% url 'home' %}">
@@ -25,6 +57,5 @@
   -->
     <button type="submit" class="btn btn-secondary">Login</button>
   </form>
-</div>
 {% endif %}
 {% endblock %}
