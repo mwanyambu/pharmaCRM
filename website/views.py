@@ -60,8 +60,19 @@ def register_user(request):
 
 def doctor_list(request, pk):
     if request.user.is_authenticated:
-        master_list = DoctorList.objects.get(id=pk)
-        return render(request, 'doctor_list.html', {'master_list':master_list})
+        doctor_list = DoctorList.objects.get(id=pk)
+        return render(request, 'doctor_list.html', {'doctor_list':doctor_list})
     else:
         messages.sucess(request, 'you must log in - please try again')
         return redirect('home')
+    
+def delete_record(request, pk):
+    if request.user.is_authenticated:
+        deleted_list = DoctorList.objects.get(id=pk)
+        deleted_list.delete()
+        messages.success(request, 'You have deleted the doctor from the list')
+        return redirect('home')
+    else:
+        messages.success(request, 'You must log in - please try again')
+        return redirect('home')
+ 

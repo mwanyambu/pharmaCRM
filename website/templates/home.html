@@ -5,7 +5,6 @@
   <table class="table table-hover table-striped table-bordered">
     <thead class="table-dark">
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Phone</th>
@@ -28,15 +27,15 @@
             <td>{{ item.state }}</td>
             <td>{{ item.zip }}</td>
             <td>{{ item.notes }}</td>
-            <td>{{ item.id }}</td>
+            <td><a href="{% url 'doctor_list' item.id %}">{{ item.id }}</a></td>
           </tr>
         {% endfor %}
       {% endif %}
     </tbody>
   </table>
-  <h1>master list</h1>
- 
+
   {% else %}
+  <div class="col-md-6 offset-md-3">
 <h1>Log in</h1>
 <form method="post" action="{% url 'home' %}">
     {% csrf_token %}
@@ -57,5 +56,6 @@
   -->
     <button type="submit" class="btn btn-secondary">Login</button>
   </form>
+  </div>
 {% endif %}
 {% endblock %}
