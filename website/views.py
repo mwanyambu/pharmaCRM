@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from .forms import SignUpForm
 from .models import DoctorList
-
+from .forms import AddRecordForm
 # Create your views here.
 def home(request):
     master_list = DoctorList.objects.all()
@@ -75,4 +75,31 @@ def delete_record(request, pk):
     else:
         messages.success(request, 'You must log in - please try again')
         return redirect('home')
+
+def add_record(request):
+    form = AddRecordForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            if form.is_valid():
+                add_record = form.save()
+                messages.success(request, 'You have added a doctor to the list')
+                return redirect('home')
+        return render(request, 'add_record.html', {'form':form})
+    else:
+        messages.success(request, 'You must log in - please try again')
+        return redirect('home')
+    
+def update_record(request, pk):
+    if request.user.is_authenticated:
+        doctor_list = DoctorList.objects.get(id=pk)
+        form = AddRecordForm(request.POST or None, instance=doctor_list)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'You have updated the doctor list')
+            return redirect('home')
+        return render(request, 'update_record.html', {'form':form})
+    else:
+        messages.success(request, 'You must log in - please try again')
+        return redirect('home')
+
  
