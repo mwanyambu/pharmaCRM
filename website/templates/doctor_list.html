@@ -5,15 +5,18 @@
     <strong>{{ doctor_list.first_name }} {{ doctor_list.last_name }}</strong>
   </div>
   <div class="card-body">
-    <p class="card-text">
+    <p class="card-text" style="color: black">
+      <strong>ID: </strong>{{ doctor_list.id }}<br/>
+      <strong>User: </strong>{{ doctor_list.user.username }}<br/>
+      <strong>Speciality</strong>{{ doctor_list.speciality }}<br/>
       <strong>Email: </strong>{{ doctor_list.email }}<br/>
       <strong>Phone: </strong>{{ doctor_list.phone }}<br/>
-      <strong>Address: </strong>{{ doctor_list.address }}<br/>
+      <strong>Facility: </strong>{{ doctor_list.facility_name }}<br/>
       <strong>City: </strong>{{ doctor_list.city }}<br/>
       <strong>State: </strong>{{ doctor_list.state }}<br/>
       <strong>Zip: </strong>{{ doctor_list.zip }}<br/>
       <strong>Notes: </strong>{{ doctor_list.notes }}<br/>
-      <strong>ID: </strong>{{ doctor_list.id }}<br/>
+      
     </p>
     <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
     <a href="#" class="btn btn-primary">Go somewhere</a> -->

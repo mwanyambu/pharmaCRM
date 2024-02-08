@@ -5,29 +5,38 @@
   <table class="table table-hover table-striped table-bordered">
     <thead class="table-dark">
       <tr>
+        <th scope="col">ID</th>
+        <th scope="col">User</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
+        <th scope="col">Speciality</th>
         <th scope="col">Phone</th>
-        <th scope="col">Address</th>
+        <th scope="col">Facility</th>
         <th scope="col">City</th>
         <th scope="col">State</th>
         <th scope="col">Zip</th>
-        <th scope="col">ID</th>
+        <th scope="col">Notes</th>
+        <th scope="col">Products Prescribing</th>
+        
       </tr>
     </thead>
     <tbody>
       {% if master_list %}
         {% for item in master_list %}
           <tr>
+            <td><a href="{% url 'doctor_list' item.id %}">{{ item.id }}</a></td>
+            <td>{{ item.user }}</td>
             <td>{{ item.first_name }} {{ item.last_name }}</td>
             <td>{{ item.email }}</td> 
+            <td>{{ item.speciality }}</td>
             <td>{{ item.phone }}</td>
-            <td>{{ item.address }}</td>
+            <td>{{ item.facility }}</td>
             <td>{{ item.city }}</td>
             <td>{{ item.state }}</td>
             <td>{{ item.zip }}</td>
+           
             <td>{{ item.notes }}</td>
-            <td><a href="{% url 'doctor_list' item.id %}">{{ item.id }}</a></td>
+            
           </tr>
         {% endfor %}
       {% endif %}
@@ -40,11 +49,10 @@
 <form method="post" action="{% url 'home' %}">
     {% csrf_token %}
     <div class="mb-3">
-      <!-- <label for="exampleInputEmail1" class="form-label">Email address</label> -->
-      <input type="text" class="form-control" name="username", placeholder="username" required> <!-- id="exampleInputEmail1" aria-describedby="emailHelp"> -->
-      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+      <input type="text" class="form-control" name="username", placeholder="username" required> 
     </div>
     <div class="mb-3">
+      
       <!-- <label for="exampleInputPassword1" class="form-label">Password</label> -->
       <input type="password" class="form-control" name="password", placeholder="Password" required> <!-- id="exampleInputPassword1"> -->
     </div>
