@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Visit Plans</h2>
+  <ul>
+    {% for plan in object_list %}
+      <li>{{ plan.sales_rep }} - {{ plan.doctor }} - {{ plan.visit_date }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

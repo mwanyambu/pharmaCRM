@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  {% if user.is_authenticated %}
+  <table class="table table-hover table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">User</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Speciality</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Facility</th>
+        <th scope="col">City</th>
+        <th scope="col">State</th>
+        <th scope="col">Zip</th>
+        <th scope="col">Notes</th>
+        <th scope="col">Products Prescribing</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      {% if master_list %}
+        {% for item in master_list %}
+        <tr>
+          <td><a href="{% url 'doctor_list' item.id %}">{{ item.id }}</a></td>
+          <td>{{ item.user }}</td>
+          <td>{{ item.first_name }} {{ item.last_name }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.speciality }}</td>
+          <td>{{ item.phone }}</td>
+          <td>{{ item.facility }}</td>
+          <td>{{ item.city }}</td>
+          <td>{{ item.state }}</td>
+          <td>{{ item.zip }}</td>
+          <td>{{ item.notes }}</td>
+          <td>{{ item.products_prescribing }}</td>
+          
+        </tr>
+        {% endfor %}
+      {% endif %}
+
+    </tbody>
+  </table>
+
+  {% else %}
+  <div class="col-md-6 offset-md-3">
+<h1>Log in</h1>
+<form method="post" action="{% url 'home' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <input type="text" class="form-control" name="username", placeholder="username" required> 
+    </div>
+    <div class="mb-3">
+      
+      <!-- <label for="exampleInputPassword1" class="form-label">Password</label> -->
+      <input type="password" class="form-control" name="password", placeholder="Password" required> <!-- id="exampleInputPassword1"> -->
+    </div>
+    <!--
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+  -->
+    <button type="submit" class="btn btn-secondary">Login</button>
+  </form>
+  </div>
+{% endif %}
+{% endblock %}

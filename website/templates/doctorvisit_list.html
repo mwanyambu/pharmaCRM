@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Doctor Visits</h2>
+  <ul>
+    {% for visit in object_list %}
+      <li>{{ visit.doctor }} - {{ visit.visit_date }} - {{ visit.status }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

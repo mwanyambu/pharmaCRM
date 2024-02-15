@@ -2,68 +2,101 @@
 {% block content %}
 
   {% if user.is_authenticated %}
-  <table class="table table-hover table-striped table-bordered">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">User</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Speciality</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Facility</th>
-        <th scope="col">City</th>
-        <th scope="col">State</th>
-        <th scope="col">Zip</th>
-        <th scope="col">Notes</th>
-        <th scope="col">Products Prescribing</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-      {% if master_list %}
-        {% for item in master_list %}
-          <tr>
-            <td><a href="{% url 'doctor_list' item.id %}">{{ item.id }}</a></td>
-            <td>{{ item.user }}</td>
-            <td>{{ item.first_name }} {{ item.last_name }}</td>
-            <td>{{ item.email }}</td> 
-            <td>{{ item.speciality }}</td>
-            <td>{{ item.phone }}</td>
-            <td>{{ item.facility }}</td>
-            <td>{{ item.city }}</td>
-            <td>{{ item.state }}</td>
-            <td>{{ item.zip }}</td>
-           
-            <td>{{ item.notes }}</td>
-            
-          </tr>
-        {% endfor %}
-      {% endif %}
-    </tbody>
-  </table>
+  <h1>WELCOME</h1>
 
   {% else %}
-  <div class="col-md-6 offset-md-3">
-<h1>Log in</h1>
-<form method="post" action="{% url 'home' %}">
-    {% csrf_token %}
-    <div class="mb-3">
-      <input type="text" class="form-control" name="username", placeholder="username" required> 
+
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pharmaceutical CRM</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Additional CSS or JS files here -->
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header class="bg-blue-500 py-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <!-- <img src="logo.png" alt="Logo" class="w-12"> -->
+      <nav class="space-x-4">
+        <a href="#" class="text-white">Home</a>
+        <a href="#" class="text-white">Features</a>
+        <a href="#" class="text-white">About</a>
+        <a href="#" class="text-white">Contact</a>
+      </nav>
     </div>
-    <div class="mb-3">
-      
-      <!-- <label for="exampleInputPassword1" class="form-label">Password</label> -->
-      <input type="password" class="form-control" name="password", placeholder="Password" required> <!-- id="exampleInputPassword1"> -->
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-cover bg-center bg-no-repeat py-32" style="background-image: url('https://source.unsplash.com/featured/1280x720/?pharmaceutical')">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl font-bold text-white mb-4">Manage Your Sales Representatives Efficiently</h1>
+      <p class="text-lg text-white mb-8">A pharmaceutical CRM solution to streamline field activity</p>
+      <a href="#" class="bg-white text-blue-500 py-2 px-4 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition duration-300">Get Started</a>
     </div>
-    <!--
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </section>
+
+  <!-- Feature Section -->
+  <section class="bg-gray-100 py-20">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-lg shadow-md">
+        <i class="fas fa-user-md text-4xl text-blue-500 mb-4 animate__animated animate__fadeIn"></i>
+        <h2 class="text-xl font-semibold mb-2">Field Activity Management</h2>
+        <p class="text-gray-600">Efficiently track and manage your sales representatives' field activities through a centralized platform.</p>
+      </div>
+      <div class="bg-white p-8 rounded-lg shadow-md">
+        <i class="fas fa-chart-line text-4xl text-blue-500 mb-4 animate__animated animate__fadeIn"></i>
+        <h2 class="text-xl font-semibold mb-2">Performance Analytics</h2>
+        <p class="text-gray-600">Gain valuable insights into your sales team's performance through detailed analytics and reports.</p>
+      </div>
+      <div class="bg-white p-8 rounded-lg shadow-md">
+        <i class="fas fa-envelope-open-text text-4xl text-blue-500 mb-4 animate__animated animate__fadeIn"></i>
+        <h2 class="text-xl font-semibold mb-2">Communication Management</h2>
+        <p class="text-gray-600">Seamlessly communicate with your sales representatives and clients through integrated messaging functionalities.</p>
+      </div>
     </div>
-  -->
-    <button type="submit" class="btn btn-secondary">Login</button>
-  </form>
-  </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="bg-gray-200 py-20">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">About Our Project</h2>
+      <p class="text-lg mb-8">This project was inspired by the need for an efficient pharmaceutical CRM solution to manage sales representatives' field activities. We aimed to create a user-friendly and intuitive platform that streamlines the entire process.</p>
+      <p>This project was developed as a Portfolio Project for Holberton School. You can find the project code on our <a href="https://github.com/mwanyambu/PharmaCRM" class="text-blue-500 underline">GitHub repository</a>.</p>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="bg-blue-500 text-white text-center py-4">
+    <div class="container mx-auto">
+      <div class="flex justify-center space-x-4">
+        <a href="https://x.com/jmwanyambu" class="text-white hover:text-blue-200"><i class="fab fa-twitter"></i></a>
+        <a href="https://github.com/mwanyambu" class="text-white hover:text-blue-200"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/john-mwanyambu-b44374147" class="text-white hover:text-blue-200"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.3.5/dist/scrollreveal.min.js"></script>
+  <script>
+    ScrollReveal().reveal('.animate__animated', {
+      delay: 200,
+      interval: 200,
+      reset: true
+    });
+  </script>
+  <!-- Additional JS code here -->
+</body>
+
+</html>
+
+  
 {% endif %}
 {% endblock %}

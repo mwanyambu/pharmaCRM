@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Supervisor List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Sales Reps Assigned</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for supervisor in object_list %}
+        <tr>
+          <td>{{ supervisor.user }}</td>
+          <td>{{ supervisor.sales_reps_assigned.all|join:", " }}</td>
+          <td>{{ supervisor.phone }}</td>
+          <td>{{ supervisor.email }}</td>
+          <td>
+            <a href="{% url 'supervisor_detail' pk=supervisor.pk %}">View</a>
+            <a href="{% url 'supervisor_update' pk=supervisor.pk %}">Update</a>
+            <a href="{% url 'supervisor_delete' pk=supervisor.pk %}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'supervisor_create' %}">Add Supervisor</a>
+{% endblock %}

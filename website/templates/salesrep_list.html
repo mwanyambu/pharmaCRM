@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Sales Representatives</h2>
+  <ul>
+    {% for salesrep in object_list %}
+      <li>{{ salesrep.user.username }} - {{ salesrep.region }} - {{ salesrep.phone }} - {{ salesrep.email }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,11 @@
+<!-- master_doctor_form.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Add a Master Doctor</h2>
+  <form method="POST" action="{% url 'master_doctor_form' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

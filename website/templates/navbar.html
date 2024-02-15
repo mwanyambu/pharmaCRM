@@ -11,44 +11,116 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
       --> 
+
         {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'daily_report' %}">Daily Report</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'add_record' %}">Add record</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'regions' %}">Regions</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'product_form' %}">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'product_list' %}">DoctorProductList</a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Logout</a>
         </li>
+   
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Supervisor
+          </a>
+          <ul class="dropdown-menu">
+              <li><a class="nav-link" href="{% url 'supervisor_list' %}" style="color: black">List</a></li>
+              <li><a class="nav-link" href="{% url 'supervisor_create' %}" style="color: black">Create</a></li>
+              <li><a class="nav-link" href="{% url 'supervisor_update' pk=1 %}" style="color: black">Update</a></li>
+              <li><a class="nav-link" href="{% url 'supervisor_delete' pk=1 %}" style="color: black">Delete</a></li>
+          </ul>
+      </li>
+        <!-- Sales Reps Section -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Sales Reps
+          </a>
+          <ul class="dropdown-menu">
+              <li><a class="nav-link" href="{% url 'salesrep_list' %}" style="color: black">List</a></li>
+              <li><a class="nav-link" href="{% url 'salesrep_create' %}" style="color: black">Create</a></li>
+              <li><a class="nav-link" href="{% url 'salesrep_update' pk=1 %}" style="color: black">Update</a></li>
+              <li><a class="nav-link" href="{% url 'salesrep_delete' pk=1 %}" style="color: black">Delete</a></li>
+          </ul>
+      </li>
+
+      <!-- Master Doctors Section -->
+      <!-- ... Repeat similar structure for other sections ... -->
+
+      <!-- Product Section -->
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Products
+          </a>
+          <ul class="dropdown-menu">
+              <li><a class="nav-link" href="{% url 'product_list' %}" style="color: black">List</a></li>
+              <li><a class="nav-link" href="{% url 'product_create' %}" style="color: black">Create</a></li>
+              <li><a class="nav-link" href="{% url 'product_update' pk=1 %}" style="color: black">Update</a></li>
+              <li><a class="nav-link" href="{% url 'product_delete' pk=1 %}" style="color: black">Delete</a></li>
+          </ul>
+      </li>
+        <!-- Master Doctors Section -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Master Doctors
+          </a>
+          <ul class="dropdown-menu">
+              <li><a class="nav-link" href="{% url 'masterdoctor_list' %}" style="color: black">List</a></li>
+              <li><a class="nav-link" href="{% url 'masterdoctor_create' %}" style="color: black">Create</a></li>
+              <li><a class="nav-link" href="{% url 'masterdoctor_update' pk=1 %}" style="color: black">Update</a></li>
+              <li><a class="nav-link" href="{% url 'masterdoctor_delete' pk=1 %}" style="color: black">Delete</a></li>
+          </ul>
+      </li>
+
+      <!-- Visit Plan Section -->
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Visit Plan
+          </a>
+          <ul class="dropdown-menu">
+              <li><a class="nav-link" href="{% url 'visitplan_list' %}" style="color: black">List</a></li>
+              <li><a class="nav-link" href="{% url 'visitplan_create' %}" style="color: black">Create</a></li>
+              <li><a class="nav-link" href="{% url 'visitplan_update' pk=1 %}" style="color: black">Update</a></li>
+              <li><a class="nav-link" href="{% url 'visitplan_delete' pk=1 %}" style="color: black">Delete</a></li>
+          </ul>
+      </li>
+
+        <!-- Region Section -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Region
+          </a>
+          <ul class="dropdown-menu">
+              <li><a class="nav-link" href="{% url 'region_list' %}" style="color: black">List</a></li>
+              <li><a class="nav-link" href="{% url 'region_create' %}" style="color: black">Create</a></li>
+              <li><a class="nav-link" href="{% url 'region_update' pk=1 %}" style="color: black">Update</a></li>
+              <li><a class="nav-link" href="{% url 'region_delete' pk=1 %}" style="color: black">Delete</a></li>
+          </ul>
+      </li>
+
+      <!-- Doctor Visit Section -->
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Doctor Visit
+          </a>
+          <ul class="dropdown-menu">
+              <li><a class="nav-link" href="{% url 'doctorvisit_list' %}" style="color: black">List</a></li>
+              <li><a class="nav-link" href="{% url 'doctorvisit_create' %}" style="color: black">Create</a></li>
+              <li><a class="nav-link" href="{% url 'doctorvisit_update' pk=1 %}" style="color: black">Update</a></li>
+              <li><a class="nav-link" href="{% url 'doctorvisit_delete' pk=1 %}" style="color: black">Delete</a></li>
+          </ul>
+      </li>
         {% else %}'
         <li class="nav-item">
           <a class="nav-link" href="{% url 'register' %}">Register</a>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'home' %}">Login</a>
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
         </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+      </li>
         {% endif %} 
-        <!--
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
+        
+        
       -->
         <!--
         <li class="nav-item">

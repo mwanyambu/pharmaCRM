@@ -1,0 +1,26 @@
+<!-- sales_rep.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+    <h1>{% if rep %}Update Sales Rep{% else %}Add Sales Rep{% endif %}</h1>
+    <br/>
+    <form method="POST" action="{% url 'sales_rep' %}">
+        {% csrf_token %}
+        {{ sales_rep.as_p }}
+
+        <br/>
+        <button type="submit" class="btn btn-primary">{% if rep %}Update{% else %}Save{% endif %}</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    </form>
+
+    {% if rep %}
+        <h2>Sales Rep Data</h2>
+        <p>Username: {{ rep.user.username }}</p>
+        <p>Region: {{ rep.region }}</p>
+        <p>Phone: {{ rep.phone }}</p>
+        <!-- Add more fields as needed -->
+    {% endif %}
+</div>
+
+{% endblock %}

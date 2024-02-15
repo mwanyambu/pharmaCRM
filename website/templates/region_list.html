@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Regions</h2>
+  <ul>
+    {% for region in object_list %}
+      <li>{{ region.region_name }} - Assigned to: {{ region.assigned_rep }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

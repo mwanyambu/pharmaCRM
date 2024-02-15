@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Master Doctor List</h2>
+  <ul>
+    {% for doctor in object_list %}
+      <li>{{ doctor.first_name }} {{ doctor.last_name }} - {{ doctor.speciality }} - {{ doctor.phone }} - {{ doctor.Hospital_name }} - {{ doctor.location }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

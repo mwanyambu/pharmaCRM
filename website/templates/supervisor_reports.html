@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+  <h1>Supervisor Reports</h1>
+<br/>
+  <form method="POST" action="{% url 'supervisor_reports' %}">
+    {% csrf_token %}
+    {{ supervisor_report_form.as_p }}
+
+<br/>
+  <button type="submit" class="btn btn-primary">save</button>
+  <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+</form>
+</div>
+<h2> Team Reports</h2>
+{% for report in team_reports %}
+  {{ report.sales_rep.user.username }} - {{ report.visit_date }} - {{ report.status }}
+  <a href="{% url 'supervisor_reports' report.id %}" class="btn btn-secondary">View</a>
+
+  <br/>
+{% endfor %}
+
+{% endblock %}

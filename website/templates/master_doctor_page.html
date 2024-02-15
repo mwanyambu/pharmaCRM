@@ -1,0 +1,41 @@
+<!-- master_doctor_page.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+  {% if user.is_authenticated %}
+  <h2>Master Doctor List</h2>
+
+  <table class="table table-hover table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Sales Rep</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Speciality</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Hospital</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if doctors_data %}
+        {% for item in doctors_data %}
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.sales_rep }}</td>
+          <td>{{ item.first_name }}</td>
+          <td>{{ item.last_name }}</td>
+          <td>{{ item.speciality }}</td>
+          <td>{{ item.phone }}</td>
+          <td>{{ item.hospital }}</td>
+        </tr>
+        {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+  
+  {% endif %}
+
+{% endblock %}
